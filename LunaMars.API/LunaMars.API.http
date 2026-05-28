@@ -1,0 +1,6 @@
+@LunaMars.API_HostAddress = http://localhost:5185
+
+GET {{LunaMars.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
