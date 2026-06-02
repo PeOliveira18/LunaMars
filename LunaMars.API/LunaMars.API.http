@@ -1,6 +1,210 @@
 @LunaMars.API_HostAddress = http://localhost:5185
+@coloniaId = 2
+@setorId = 1
+@sensorId = 1
+@recursoId = 1
+@alertaId = 1
+@missaoId = 1
 
-GET {{LunaMars.API_HostAddress}}/weatherforecast/
+GET {{LunaMars.API_HostAddress}}/api/colonias
 Accept: application/json
+
+###
+
+POST {{LunaMars.API_HostAddress}}/api/colonias
+Content-Type: application/json
+
+{
+  "nomeColonia": "Ares I",
+  "localizacao": 1,
+  "capacidadePessoas": 20
+}
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/colonias/{{coloniaId}}
+Accept: application/json
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/setores
+Accept: application/json
+
+###
+
+POST {{LunaMars.API_HostAddress}}/api/setores
+Content-Type: application/json
+
+{
+  "nomeSetor": "Habitacao",
+  "tipoSetor": 0,
+  "pressaoInterna": 101.3,
+  "temperaturaAtual": 22,
+  "coloniaEspacialId": {{coloniaId}}
+}
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/setores/{{setorId}}
+Accept: application/json
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/setores/colonia/{{coloniaId}}
+Accept: application/json
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/sensores
+Accept: application/json
+
+###
+
+POST {{LunaMars.API_HostAddress}}/api/sensores
+Content-Type: application/json
+
+{
+  "nomeSensor": "Sensor de Oxigenio",
+  "tipoSensor": 0,
+  "setorColoniaId": {{setorId}}
+}
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/sensores/{{sensorId}}
+Accept: application/json
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/sensores/setor/{{setorId}}
+Accept: application/json
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/recursos
+Accept: application/json
+
+###
+
+POST {{LunaMars.API_HostAddress}}/api/recursos
+Content-Type: application/json
+
+{
+  "tipoRecurso": 0,
+  "quantidade": 18,
+  "unidadeMedida": "kg",
+  "nivelMinimo": 20,
+  "dtValidade": "2026-12-31T00:00:00",
+  "coloniaEspacialId": {{coloniaId}}
+}
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/recursos/{{recursoId}}
+Accept: application/json
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/recursos/colonia/{{coloniaId}}
+Accept: application/json
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/recursos/criticos
+Accept: application/json
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/leituras
+Accept: application/json
+
+###
+
+POST {{LunaMars.API_HostAddress}}/api/leituras
+Content-Type: application/json
+
+{
+  "valor": 15.2,
+  "unidadeMedida": "%",
+  "sensorAmbientalId": {{sensorId}},
+  "setorColoniaId": {{setorId}}
+}
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/leituras/setor/{{setorId}}
+Accept: application/json
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/alertas
+Accept: application/json
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/alertas/abertos
+Accept: application/json
+
+###
+
+PUT {{LunaMars.API_HostAddress}}/api/alertas/{{alertaId}}/finalizar
+Accept: application/json
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/missoes
+Accept: application/json
+
+###
+
+POST {{LunaMars.API_HostAddress}}/api/missoes
+Content-Type: application/json
+
+{
+  "descricao": "Corrigir falha de oxigenio no setor habitacional",
+  "alertaColoniaId": {{alertaId}}
+}
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/missoes/{{missaoId}}
+Accept: application/json
+
+###
+
+PUT {{LunaMars.API_HostAddress}}/api/missoes/{{missaoId}}/concluir
+Accept: application/json
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/equipamentos/rovers
+Accept: application/json
+
+###
+
+POST {{LunaMars.API_HostAddress}}/api/equipamentos/rovers
+Content-Type: application/json
+
+{
+  "nomeEquipamento": "Rover Artemis",
+  "nivelBateria": 87.5,
+  "distanciaPercorridaKm": 12.4
+}
+
+###
+
+GET {{LunaMars.API_HostAddress}}/api/equipamentos/satelites
+Accept: application/json
+
+###
+
+POST {{LunaMars.API_HostAddress}}/api/equipamentos/satelites
+Content-Type: application/json
+
+{
+  "nomeEquipamento": "Satelite Hermes",
+  "orbita": "Baixa marciana",
+  "agenciaOperadora": "LunaMars"
+}
 
 ###
