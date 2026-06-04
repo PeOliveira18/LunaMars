@@ -1,4 +1,4 @@
-# LunaMars Habitat API
+# LunaMars
 
 API em ASP.NET Core Web API para simular o monitoramento de uma colonia humana na Lua ou em Marte.
 
